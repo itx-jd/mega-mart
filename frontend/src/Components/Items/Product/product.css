@@ -1,0 +1,11 @@
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    padding:20px;
+    margin-top: 10px;
+  }
+  
+  .product-container .image-container,
+  .product-container .details-container {
+    flex: 0 0 50%;
+  }

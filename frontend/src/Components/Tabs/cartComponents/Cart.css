@@ -1,0 +1,29 @@
+.cart-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  
+  .section-divider {
+    width: 100%; 
+    margin: 10px 0; 
+  }
+  .cart-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 80%;
+    max-height: 80%;
+    background-color: white;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }

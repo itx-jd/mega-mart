@@ -1,0 +1,70 @@
+/* Nav.css */
+
+.custom-navbar {
+    height: 70px;
+    background-color: #0b0c10;
+  }
+  
+  .custom-logo {
+    object-fit: cover;
+    height: 30px;
+    width: 30px;
+    margin-left: 15px;
+    filter: brightness(0) invert(1);
+  }
+  
+  .custom-brand {
+    color: white;
+  }
+
+  
+  .custom-input-group {
+    width: 600px;
+    border: 1px solid rgba(240, 240, 240, 0.4); /* Set border color to match text color */
+    border-radius: 5px;
+    margin-right: 15px;
+    transition: border-color 0.3s; /* Add a transition effect for border color change */
+  }
+  
+  .custom-input-group:hover {
+    border-color: rgba(240, 240, 240, 0.9); /* Slightly darker border color on hover */
+  }
+  
+  .custom-input-group .input-group-text {
+    background-color: transparent;
+    border: none;
+    padding: 0.375rem 0.75rem;
+    color: rgba(240, 240, 240, 0.4); /* Slightly darker color with reduced brightness */
+    font-family: "Noto Sans JP", sans-serif;
+    transition: filter 0.3s; /* Add a transition effect for smoother change */
+  }
+  
+  .custom-input-group:hover .input-group-text {
+    filter: brightness(1.2); 
+  }
+  
+  .custom-input-group .form-control {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    padding: 0.375rem 0.75rem;
+    outline: none;
+    box-shadow: none;
+    color: rgba(240, 240, 240, 0.4);
+    font-family: "Noto Sans JP", sans-serif;
+  }
+  
+  .custom-input-group .form-control::placeholder {
+    color: rgba(240, 240, 240, 0.4);
+    font-family: "Noto Sans JP", sans-serif;
+  }
+  
+  .custom-input-group .form-control:focus {
+    color: rgba(240, 240, 240, 0.4);
+  }
+  
+  .custom-input-group .form-control:focus + .input-group-text {
+    border: none;
+    box-shadow: none;
+  }
+  

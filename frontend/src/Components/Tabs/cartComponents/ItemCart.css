@@ -1,0 +1,29 @@
+.item-card {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.item-image {
+  flex: 0 0 50px;
+  margin-right: 10px;
+}
+
+.item-img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.item-name,
+.item-price,
+.item-total-price {
+  margin: 0;
+}
+
+.fav-icon {
+  cursor: pointer; 
+}

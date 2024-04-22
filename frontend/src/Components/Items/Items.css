@@ -1,0 +1,35 @@
+.hovered-description {
+  font-weight: bold;
+}
+
+.item-carousel:hover .hovered-description {
+  font-weight: normal;
+}
+
+.alert-custom {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.alert-custom strong {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.alert-custom span {
+  margin-left: 5px;
+}
+
+/* Add this to make the alert fade in and out */
+.alert-custom.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
