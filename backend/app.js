@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 
 
-app.use(cors());
+app.use(cors({origin:"*"}));
 const fileUpload = require('express-fileupload');
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
@@ -25,6 +25,7 @@ const orderRouter = require('./routes/orderRoutes');
 
 //category router
 const categoryRouter = require('./routes/categoryRoutes');
+
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');

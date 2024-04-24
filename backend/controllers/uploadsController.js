@@ -39,10 +39,9 @@ const uploadProductImage = async (req, res) => {
         use_filename: true,
         folder: 'file-upload',
       });
-      
+      ``
       imageUrls.push(result.secure_url);
 
-      // Optionally, you can delete the temporary file after upload
       fs.unlinkSync(imageFile.tempFilePath);
     }
 

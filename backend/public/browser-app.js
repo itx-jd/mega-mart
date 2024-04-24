@@ -1,4 +1,4 @@
-const url = '/api/v1/products';
+const url = '/api/products';
 const fileFormDOM = document.querySelector('.file-form');
 const idInputDOM = document.querySelector('#id');
 const nameInputDOM = document.querySelector('#name');

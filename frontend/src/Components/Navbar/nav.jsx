@@ -1,13 +1,21 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css";
 
-export default function Nav(props) {
+import PropTypes from 'prop-types';
+
+export default function Nav({ toggleCart, setSearchItem }) {
+  // Component code here
+
+
+Nav.propTypes = {
+  toggleCart: PropTypes.func.isRequired,
+  setSearchItem: PropTypes.func.isRequired,
+};
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const searchTerm = formData.get("search");
-    props.SearchItem(searchTerm);
+    setSearchItem(searchTerm);
   };
 
   return (
@@ -45,7 +53,7 @@ export default function Nav(props) {
               </div>
             </form>
           </li>
-          <li className="nav-item" onClick={props.toggleCart}>
+          <li className="nav-item" onClick={toggleCart}>
             <i
               className="fas fa-shopping-cart"
               style={{ color: "white", marginRight: "10px",marginTop:"10px" }}

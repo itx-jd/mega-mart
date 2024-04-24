@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Navbar from "./Components/Navbar/nav";
 import Items from "./Components/Items/index";
 import Product from "./Components/Items/Product/product";
@@ -43,6 +43,7 @@ function InnerApp() {
             : prevItem
         );
       } else {
+
         return [...prevItems, item];
       }
     });
@@ -67,7 +68,7 @@ function InnerApp() {
 
   return (
     <>
-      <Navbar toggleCart={toggleCart} SearchItem={SetSearchItem}/>
+      <Navbar toggleCart={toggleCart} setSearchItem={SetSearchItem} />
       
       <div style={{ marginTop: "100px" }}>
         <Routes>
