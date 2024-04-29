@@ -6,8 +6,34 @@ const descriptionInputDOM = document.querySelector('#description');
 const priceInputDOM = document.querySelector('#price');
 const quantityInputDOM = document.querySelector('#quantity');
 const imageInputDOM = document.querySelector('#image');
+const categoryDropdown = document.querySelector('#category'); 
 const containerDOM = document.querySelector('.container');
 let imageValue;
+
+async function populateCategories() {
+  try {
+    const response = await axios.get('/api/categories');
+    const categories = response.data.categories;
+
+    categoryDropdown.innerHTML = '';
+
+    const defaultOption = document.createElement('option');
+    defaultOption.text = 'Select category';
+    defaultOption.value = ''; 
+    categoryDropdown.appendChild(defaultOption);
+
+    categories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category._id; 
+      option.text = category.categoryName;
+      categoryDropdown.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+}
+
+populateCategories();
 
 imageInputDOM.addEventListener('change', async (e) => {
   const imageFiles = e.target.files;
@@ -18,7 +44,6 @@ imageInputDOM.addEventListener('change', async (e) => {
 
   const formData = new FormData();
 
- 
   for (const imageFile of imageFiles) {
     formData.append('images', imageFile);
   }
@@ -31,6 +56,7 @@ imageInputDOM.addEventListener('change', async (e) => {
     });
 
     imageValue = images;
+    console.log("ya ha "+images)
   } catch (error) {
     imageValue = null;
     console.error('Error uploading images:', error);
@@ -45,12 +71,11 @@ fileFormDOM.addEventListener('submit', async (e) => {
   const descriptionValue = descriptionInputDOM.value;
   const priceValue = priceInputDOM.value;
   const quantityValue = quantityInputDOM.value;
+  const categoryValue = categoryDropdown.value;
 
-  console.log('Submitting form with data:', { idValue, nameValue, descriptionValue, priceValue, quantityValue, imageValue });
 
   try {
-    const product = { itemId: idValue, itemName: nameValue, description: descriptionValue, price: priceValue, quantity: quantityValue, images: imageValue };
-
+    const product = { itemId: idValue, itemName: nameValue, description: descriptionValue, price: priceValue, quantity: quantityValue, category: categoryValue, images: imageValue };
     const response = await axios.post(url, product);
 
     console.log('Form submitted successfully:', response.data);
@@ -59,7 +84,6 @@ fileFormDOM.addEventListener('submit', async (e) => {
   } catch (error) {
     console.error('Error submitting form:', error.response ? error.response.data : error.message);
   }
-  
 });
 
 async function fetchProducts() {
@@ -80,5 +104,3 @@ async function fetchProducts() {
     console.log(error);
   }
 }
-
-//fetchProducts();

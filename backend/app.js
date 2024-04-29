@@ -1,12 +1,12 @@
+// app.js or server.js
+
 require('dotenv').config();
 const cors = require('cors');
 require('express-async-errors');
-
 const express = require('express');
 const app = express();
 
-
-app.use(cors({origin:"*"}));
+app.use(cors({ origin: '*' }));
 const fileUpload = require('express-fileupload');
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
@@ -17,15 +17,20 @@ cloudinary.config({
 
 const connectDB = require('./db/connect');
 
+// Import User model
+const User = require('./models/user');
+
+// Import auth routes
+const authRoutes = require('./routes/authRoutes');
+
 // product router
 const productRouter = require('./routes/productRoutes');
 
-//order router
+// order router
 const orderRouter = require('./routes/orderRoutes');
 
-//category router
+// category router
 const categoryRouter = require('./routes/categoryRoutes');
-
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
@@ -39,6 +44,10 @@ app.use(fileUpload({ useTempFiles: true }));
 app.get('/', (req, res) => {
   res.send('<h1>File Upload Starter</h1>');
 });
+
+// Mount auth routes
+app.use('/auth', authRoutes);
+
 app.use('/api/orders', orderRouter);
 
 app.use('/api/products', productRouter);
@@ -56,10 +65,9 @@ const start = async () => {
     await connectDB(process.env.MONGO_URL);
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
-      );
-      
-      console.log(process.env.MONGO_URL);
-    
+    );
+
+    console.log(process.env.MONGO_URL);
   } catch (error) {
     console.log(error);
   }

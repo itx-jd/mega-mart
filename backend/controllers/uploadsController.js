@@ -20,7 +20,9 @@ const uploadProductImage = async (req, res) => {
       imageUrls.push(result.secure_url);
 
       fs.unlinkSync(imageFile.tempFilePath);
+    console.log("hello");
     }
+    
 
     return res.status(StatusCodes.OK).json({ images: imageUrls });
   } catch (error) {
