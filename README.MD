@@ -15,7 +15,7 @@ Welcome to the Wholesaler Ecommerce Web App! This web application provides a pla
 1. Clone the repository:
 
    ```bash
-   git clone <repository_url>
+   git clone `https://github.com/itx-jd/mega-mart`
    ```
 2. Install dependencies:
    ```bash
