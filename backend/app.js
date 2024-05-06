@@ -30,7 +30,7 @@ const productRouter = require('./routes/productRoutes');
 const orderRouter = require('./routes/orderRoutes');
 
 // category router
-// const categoryRouter = require('./routes/categoryRoutes');
+const categoryRouter = require('./routes/categoryRoutes');
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
@@ -52,7 +52,7 @@ app.use('/api/orders', orderRouter);
 
 app.use('/api/products', productRouter);
 
-// app.use('/api/categories', categoryRouter);
+app.use('/api/categories', categoryRouter);
 
 // middleware
 app.use(notFoundMiddleware);

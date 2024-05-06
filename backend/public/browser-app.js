@@ -1,51 +1,84 @@
-// controllers/productController.js
+const url = 'http://my-api.com/api/products';
+const fileFormDOM = document.querySelector('.file-form');
+const idInputDOM = document.querySelector('#id');
+const nameInputDOM = document.querySelector('#name');
+const descriptionInputDOM = document.querySelector('#description');
+const priceInputDOM = document.querySelector('#price');
+const quantityInputDOM = document.querySelector('#quantity');
+const imageInputDOM = document.querySelector('#image');
+const containerDOM = document.querySelector('.container');
+let imageValue;
 
-const Product = require('../models/Product');
-const { StatusCodes } = require('http-status-codes');
-const { uploadProductImage } = require('./uploadsController'); // Import the uploadProductImage controller
+imageInputDOM.addEventListener('change', async (e) => {
+  const imageFiles = e.target.files;
 
-const createProduct = async (req, res) => {
-  const product = await Product.create(req.body);
-
-  // Assuming you have an array of image files in req.files.images
-  if (req.files && req.files.images && req.files.images.length > 0) {
-    const imageUrls = await getImageUrls(req.files.images);
-    product.images = imageUrls; // Assuming your Product model has an 'images' field
-    console.log( imageUrls);
-    await product.save();
+  if (!imageFiles || imageFiles.length === 0) {
+    return;
   }
 
-  res.status(StatusCodes.CREATED).json({ product });
-};
+  const formData = new FormData();
 
-const getAllProducts = async (req, res) => {
-  const products = await Product.find({});
-  res.status(StatusCodes.OK).json({ products });
-};
-
-const getImageUrls = async (images) => {
-  const imageUrls = [];
-  for (const image of images) {
-    const result = await uploadProductImage(image);
-    imageUrls.push(result.image.src);
+ 
+  for (const imageFile of imageFiles) {
+    formData.append('images', imageFile);
   }
-  return imageUrls;
-};
 
-const getProductsByName = async (req, res) => {
   try {
-    const { itemName } = req.query;
-    const products = await Product.find({ itemName: { $regex: new RegExp(itemName, 'i') } });
-    res.status(StatusCodes.OK).json({ products });
-  } catch (error) {
-    console.error('Error fetching products by name:', error);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Internal Server Error' });
-  }
-};
+    const { data: { images } } = await axios.post(`${url}/uploads`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
 
-module.exports = {
-  createProduct,
-  getAllProducts,
-  getImageUrls,
-  getProductsByName, 
-};
+    imageValue = images;
+  } catch (error) {
+    imageValue = null;
+    console.error('Error uploading images:', error);
+  }
+});
+
+fileFormDOM.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const idValue = idInputDOM.value;
+  const nameValue = nameInputDOM.value;
+  const descriptionValue = descriptionInputDOM.value;
+  const priceValue = priceInputDOM.value;
+  const quantityValue = quantityInputDOM.value;
+
+  console.log('Submitting form with data:', { idValue, nameValue, descriptionValue, priceValue, quantityValue, imageValue });
+
+  try {
+    const product = { itemId: idValue, itemName: nameValue, description: descriptionValue, price: priceValue, quantity: quantityValue, images: imageValue };
+
+    const response = await axios.post(url, product);
+
+    console.log('Form submitted successfully:', response.data);
+
+    fetchProducts();
+  } catch (error) {
+    console.error('Error submitting form:', error.response ? error.response.data : error.message);
+  }
+  
+});
+
+async function fetchProducts() {
+  try {
+    const { data: { products } } = await axios.get(url);
+
+    const productsDOM = products.map((product) => {
+      return `<article class="product">
+        <img src="${product.images[0]}" alt="${product.name}" class="img"/>
+        <footer>
+          <p>${product.itemName}</p>
+          <span>$${product.price}</span>
+        </footer>
+      </article>`;
+    }).join('');
+    containerDOM.innerHTML = productsDOM;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//fetchProducts();
