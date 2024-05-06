@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
-import './login.css'; // Import the CSS file
+import { Link, useNavigate } from 'react-router-dom';
+import './login.css'; 
 
 const LoginForm = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const LoginForm = ({ setIsAuthenticated }) => {
         <button type="submit">Login</button>
       </form>
       {error && <p className="error-message">{error}</p>}
-      <p>Don't have an account? <Link to="/signup">Sign up</Link></p> {/* Add Link to Signup page */}
+      <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
     </div>
   );
 };

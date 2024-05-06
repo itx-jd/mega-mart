@@ -8,7 +8,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const SignupForm = () => {
       const response = await axios.post('http://localhost:5000/auth/register', { username, email, password });
       console.log('Registered successfully:', response.data);
      
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       setError(error.response.data.error);
     }
