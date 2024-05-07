@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // App.js
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -7,7 +8,7 @@ import Product from "./Components/Items/Product/product";
 import Cart from "./Components/Tabs/cartComponents/cart";
 import Checkout from "./Components/Tabs/CheckOut/Index";
 import LoginForm from './Components/LoginForm';
-import SignupForm from './Components/SignupForm';
+
 
 function InnerApp({ isAuthenticated, setIsAuthenticated }) {
   return (
@@ -18,7 +19,6 @@ function InnerApp({ isAuthenticated, setIsAuthenticated }) {
           <Route path="/" element={isAuthenticated ? <Items /> : <LoginForm setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/checkout/:price" element={<Checkout />} />
-          <Route path="/signup" element={!isAuthenticated ? <SignupForm /> : <LoginForm setIsAuthenticated={setIsAuthenticated} />} />
         </Routes>
       </div>
       {isAuthenticated && <Cart />}
