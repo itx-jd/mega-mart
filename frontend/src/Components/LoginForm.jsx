@@ -22,7 +22,7 @@ const LoginForm = ({setIsAuthenticated}) => {
       if (isSignup) {
         try {
           console.log('Registering user:', { username, email, password });
-          const response = await axios.post('http://localhost:5000/auth/register', { username, email, password });
+          const response = await axios.post('http://localhost:3001/auth/register', { username, email, password });
           console.log('Registered successfully:', response.data);
           alert('User registered successfully');
           handleToggle();
@@ -31,7 +31,7 @@ const LoginForm = ({setIsAuthenticated}) => {
           error.response.data.error;
         }
       } else {
-        const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+        const response = await axios.post('http://localhost:3001/auth/login', { email, password });
         console.log('Logged in successfully:', response.data);
         setIsAuthenticated(true);
       

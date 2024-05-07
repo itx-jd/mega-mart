@@ -12,7 +12,7 @@ app.use("/api/products", productsProxy);
 
 //order proxy
 const ordersProxy = createProxyMiddleware({
-    target: "http://localhost:5000/api/orders",
+    target: "http://localhost:5002/api/orders",
     changeOrigin: true
   });
   
@@ -22,7 +22,7 @@ const ordersProxy = createProxyMiddleware({
 
 //auth proxy
 const authProxy = createProxyMiddleware({
-    target: "http://localhost:5000/auth",
+    target: "http://localhost:5001/auth",
     changeOrigin: true
   });
   

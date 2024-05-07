@@ -4,7 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "npm-run-all --parallel start-server*",
+    "start-server1": "nodemon app.js",
+    "start-server2": "node auth.js",
+    "start-server3": "node order.js",
+    "start-server4": "node proxy.js"
   },
   "author": "",
   "license": "ISC",

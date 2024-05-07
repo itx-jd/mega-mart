@@ -23,7 +23,7 @@ export default function Checkout({ cartItems,removeAllFromCart }) {
     };
   
     try {
-      const response = await axios.post('http://localhost:5000/api/orders', orderData);
+      const response = await axios.post('http://localhost:3001/api/orders', orderData);
       
       if (response.status === 201) {
         alert('Order placed successfully');

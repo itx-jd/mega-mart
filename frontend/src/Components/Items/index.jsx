@@ -11,14 +11,14 @@ export default function Index(props) {
         console.log(props.SearchItem);
         if (props.SearchItem) {
           const response = await fetch(
-            `http://localhost:5000/api/products/search?itemName=${props.SearchItem}`
+            `http://localhost:3001/api/products/search?itemName=${props.SearchItem}`
           );
           const data = await response.json();
           setProducts(data.products);
           console.log(data.products);
           return;
         }
-        const response = await fetch('http://localhost:5000/api/products');
+        const response = await fetch('http://localhost:3001/api/products');
         const data = await response.json();
        
         setProducts(data.products); 
