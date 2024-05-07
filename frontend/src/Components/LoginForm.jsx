@@ -48,40 +48,42 @@ const LoginForm = ({setIsAuthenticated}) => {
   };
 
   return (
-    <div className={`container ${isSignup ? 'right-panel-active' : ''}`}>
-      <div className="form-container sign-in-container">
-        <form onSubmit={handleSubmit}>
-          <h1>Sign In</h1>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          <a href="#">Forgot your password?</a>
-          <button type="submit">Sign In</button>
-        </form>
-      </div>
-      <div className="form-container sign-up-container">
-        <form onSubmit={handleSubmit}>
-          <h1>Sign Up</h1>
-          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          <button type="submit" onClick={() => setIsSignup(isSignup)} className="signup-button">Sign Up</button>
-        </form>
-      </div>
-      <div className="overlay-container">
-        <div className="overlay">
-          <div className="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-            <p>Please login with your personal info</p>
-            <button className="ghost" onClick={handleToggle} id="signIn">Sign In</button>
-          </div>
-          <div className="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start your journey with us</p>
-            <button className="ghost" onClick={handleToggle} id="signUp">Sign Up</button>
+    <div className="main-body">
+      <div className={`login-container ${isSignup ? 'right-panel-active' : ''}`}>
+        <div className="login-form-container sign-in-container">
+          <form className="login-form" onSubmit={handleSubmit}>
+            <h1 className="login-h1"> Sign In</h1>
+            <input className="login-input" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input className="login-input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <a className="login-a" href="#">Forgot your password?</a>
+            <button className="login-button" type="submit">Sign In</button>
+          </form>
+        </div>
+        <div className="login-form-container sign-up-container">
+          <form className="login-form" onSubmit={handleSubmit}>
+            <h1 className="login-h1">Sign Up</h1>
+            <input className="login-input" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            <input className="login-input" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input className="login-input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <button type="submit" onClick={() => setIsSignup(isSignup)} className="login-button signup-button">Sign Up</button>
+          </form>
+        </div>
+        <div className="login-overlay-container">
+          <div className="login-overlay">
+            <div className="login-overlay-panel login-overlay-left">
+              <h1 className="login-h1">Welcome Back!</h1>
+              <p className="login-p">Please login with your personal info</p>
+              <button className="ghost login-button" onClick={handleToggle} id="signIn">Sign In</button>
+            </div>
+            <div className="login-overlay-panel login-overlay-right">
+              <h1 className="login-h1">Hello, Friend!</h1>
+              <p className="login-p">Enter your personal details and start your journey with us</p>
+              <button className="ghost login-button" onClick={handleToggle} id="signUp">Sign Up</button>
+            </div>
           </div>
         </div>
+        {error && <p className="error-message login-p">{error}</p>}
       </div>
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
