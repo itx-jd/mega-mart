@@ -19,16 +19,16 @@ cloudinary.config({
 const connectDB = require('./db/connect');
 
 // // Import auth routes
-// const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // product router
 const productRouter = require('./routes/productRoutes');
 
 // // order router
-// const orderRouter = require('./routes/orderRoutes');
+const orderRouter = require('./routes/orderRoutes');
 
 // category router
-// const categoryRouter = require('./routes/categoryRoutes');
+const categoryRouter = require('./routes/categoryRoutes');
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
@@ -44,13 +44,13 @@ app.get('/', (req, res) => {
 });
 
 // // Mount auth routes
-// app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);
 
-// app.use('/api/orders', orderRouter);
+app.use('/api/orders', orderRouter);
 
 app.use('/api/products', productRouter);
 
-// app.use('/api/categories', categoryRouter);
+app.use('/api/categories', categoryRouter);
 
 // middleware
 app.use(notFoundMiddleware);

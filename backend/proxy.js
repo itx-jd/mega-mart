@@ -6,7 +6,7 @@ const productsProxy = createProxyMiddleware({
   changeOrigin: true
 });
 
-
+app.use(cors({ origin: '*' }));
 app.use("/api/products", productsProxy);
 
 

@@ -1,4 +1,4 @@
-const url = 'http://my-api.com/api/products';
+const url = '/api/products';
 const fileFormDOM = document.querySelector('.file-form');
 const idInputDOM = document.querySelector('#id');
 const nameInputDOM = document.querySelector('#name');
@@ -80,5 +80,3 @@ async function fetchProducts() {
     console.log(error);
   }
 }
-
-//fetchProducts();
