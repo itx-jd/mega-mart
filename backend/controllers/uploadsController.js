@@ -16,7 +16,7 @@ const uploadProductImage = async (req, res) => {
         use_filename: true,
         folder: 'file-upload',
       });
-      ``
+      
       imageUrls.push(result.secure_url);
 
       fs.unlinkSync(imageFile.tempFilePath);

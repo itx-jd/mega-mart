@@ -1,4 +1,5 @@
 import React from 'react';
+import './items.css';
 
 export default function ItemCarousel({ images,sethoverIndex,hoverIndex}) {
 
