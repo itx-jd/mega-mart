@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // App.js
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route,useLocation } from 'react-router-dom';
 import Navbar from "./Components/Navbar/nav";
 import Items from "./Components/Items/index";
@@ -71,7 +71,7 @@ function InnerApp({ isAuthenticated, setIsAuthenticated }) {
 
   return (
     <>
-      {isAuthenticated && <Navbar toggleCart={toggleCart} SearchItem={SetSearchItem}/>}
+      {isAuthenticated && <Navbar toggleCart={toggleCart} setSearchItem={SetSearchItem}/>}
       <div style={{ marginTop: "100px" }}>
         <Routes>
           <Route path="/" element={isAuthenticated ? <Items SearchItem={searchItem}/> : <LoginForm setIsAuthenticated={setIsAuthenticated} />} />

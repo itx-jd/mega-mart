@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom";
 import "./Nav.css";
 
-import PropTypes from 'prop-types';
 
 export default function Nav({ toggleCart, setSearchItem }) {
-  // Component code here
 
 
-Nav.propTypes = {
-  toggleCart: PropTypes.func.isRequired,
-  setSearchItem: PropTypes.func.isRequired,
-};
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
