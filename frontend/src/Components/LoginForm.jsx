@@ -1,16 +1,20 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
+import { AuthContext } from './Context/AuthContext'; 
 
-const LoginForm = ({setIsAuthenticated}) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [isSignup, setIsSignup] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate(); 
+
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+
   const handleToggle = () => {
     setIsSignup(!isSignup);
     setError('');
@@ -33,9 +37,9 @@ const LoginForm = ({setIsAuthenticated}) => {
       } else {
         const response = await axios.post('http://localhost:3001/auth/login', { email, password });
         console.log('Logged in successfully:', response.data);
-        setIsAuthenticated(true);
+        setIsAuthenticated(true); // Set isAuthenticated to true
       
-      navigate('/');
+        navigate('/');
       }
       // Reset form fields
       setEmail('');

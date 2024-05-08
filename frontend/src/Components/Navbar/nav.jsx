@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
-import "./Nav.css";
-
+import { useContext } from "react";
+import { AuthContext } from '../Context/AuthContext'; 
+import "./nav.css";
 
 export default function Nav({ toggleCart, setSearchItem }) {
-
-
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const searchTerm = formData.get("search");
     setSearchItem(searchTerm);
+  };
+
+  const handleLogout = () => {
+    
+    setIsAuthenticated(false); 
   };
 
   return (
@@ -55,6 +60,13 @@ export default function Nav({ toggleCart, setSearchItem }) {
             ></i>
             <span style={{ color: "white" }}></span>
           </li>
+          {isAuthenticated && (
+            <li className="nav-item">
+              <button onClick={handleLogout} className="btn btn-link" style={{ color: "white", textDecoration: "none" }}>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
