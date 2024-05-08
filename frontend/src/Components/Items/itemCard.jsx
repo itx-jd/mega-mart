@@ -17,7 +17,7 @@ export default function ItemCard(props) {
   
 
   return (
-    <div className="card mb-4 h-100" onClick={handleCardClick}>
+    <div className="card item-card mb-4 h-100" onClick={handleCardClick}>
       <div style={{ height: '200px', overflow: 'auto' }}>
         <ItemCarousel images={images} sethoverIndex={setHoverIndex} hoverIndex={hoverIndex} />
       </div>
